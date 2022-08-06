@@ -4,6 +4,20 @@ body {
 	background-size: 100%;
 }
 
+.filters {
+	display: flex;
+	flex-direction: column;
+	font-weight: bold;
+}
+
+.filters > select {
+	width: 10%;
+	margin-top: 0.5%;
+}
+.season {
+	color: rgb(204, 174, 21);
+	margin-right: 2%;
+}
 .logo {
 	margin-left: 15%;
 }

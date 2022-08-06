@@ -8,11 +8,13 @@ const Table = ({ teams, onTeamClick }) => {
 
 	return (
 		<table>
-			<tr>
-				<th>Team</th>
-				<th>Played</th>
-				<th>Points</th>
-			</tr>
+			<thead>
+				<tr>
+					<th>Team</th>
+					<th>Played</th>
+					<th>Points</th>
+				</tr>
+			</thead>
 			{team}
 		</table>
 	);

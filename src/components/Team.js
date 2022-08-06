@@ -7,13 +7,15 @@ const Team = ({ team, onTeamClick }) => {
 
 	return (
 		<>
-			<tr>
-				<td className="name" onClick={handleClick}>
-					{team.team.name}
-				</td>
-				<td className="data">{team.stats[3].value}</td>
-				<td className="data">{team.stats[6].value}</td>
-			</tr>
+			<tbody>
+				<tr>
+					<td className="name" onClick={handleClick}>
+						{team.team.name}
+					</td>
+					<td className="data">{team.stats[3].value}</td>
+					<td className="data">{team.stats[6].value}</td>
+				</tr>
+			</tbody>
 		</>
 	);
 };

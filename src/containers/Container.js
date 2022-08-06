@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Logo from "../components/Logo";
 import Table from "../components/Table";
 import Details from "../components/Details";
@@ -10,16 +10,6 @@ const Container = () => {
 	const [seasons, setSeasons] = useState([]);
 	let [selectedSeason, setSelectedSeason] = useState("");
 
-	useEffect(() => {
-		getSeasons();
-		// getTeams();
-	}, []);
-
-	const onSeasonSelected = function (season) {
-		setSelectedSeason(season);
-		getTeams();
-	};
-
 	const getSeasons = function () {
 		fetch(
 			"https://api-football-standings.azharimm.site/leagues/eng.1/seasons"
@@ -27,8 +17,11 @@ const Container = () => {
 			.then((res) => res.json())
 			.then((seasons) => setSeasons(seasons.data.seasons));
 	};
-	const getTeams = function () {
-		console.log(selectedSeason);
+
+	const getTeams = useCallback(() => {
+		// console.log(selectedSeaon);
+		console.log("usecallback" + selectedSeason);
+
 		fetch(
 			"https://api-football-standings.azharimm.site/leagues/eng.1/standings?season=" +
 				selectedSeason +
@@ -36,6 +29,16 @@ const Container = () => {
 		)
 			.then((res) => res.json())
 			.then((teams) => setTeams(teams.data.standings));
+	}, [selectedSeason]);
+
+	useEffect(() => {
+		getSeasons();
+		getTeams();
+	}, [getTeams]);
+
+	const onSeasonSelected = function (season) {
+		setSelectedSeason(season);
+		getTeams();
 	};
 
 	const onTeamClick = (team) => {
@@ -44,15 +47,21 @@ const Container = () => {
 
 	return (
 		<>
+			<div className="filters">
+				<label className="season">Pick a Season</label>
+				<Filters
+					seasons={seasons}
+					onSeasonSelected={onSeasonSelected}
+				/>
+			</div>
 			<Logo />
-			<Filters seasons={seasons} onSeasonSelected={onSeasonSelected} />
-			<h1>2021 League Table</h1>
+			<h1>{selectedSeason} League Table</h1>
 			<div className="main-section">
 				{selectedSeason ? (
 					<Table
 						teams={teams}
 						onTeamClick={onTeamClick}
-						getTeams={getTeams}
+						// getTeams={getTeams}
 					/>
 				) : null}
 				{selectedTeam ? <Details team={selectedTeam} /> : null}
