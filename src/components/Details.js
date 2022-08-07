@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
+import ResultChart from "./ResultChart";
 
-const TeamDetail = ({ team }) => {
+const TeamDetail = ({ team, google }) => {
 	return (
 		<div className="details-box">
 			<h2>{team.team.name}</h2>
@@ -29,6 +30,9 @@ const TeamDetail = ({ team }) => {
 				</li>
 				<li className="data">
 					<b>Total Points:</b> {team.stats[6].value}
+				</li>
+				<li className="data">
+					<ResultChart google={google} team={team} />
 				</li>
 			</ul>
 		</div>

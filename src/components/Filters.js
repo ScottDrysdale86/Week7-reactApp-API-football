@@ -30,7 +30,11 @@ const Filters = ({ seasons, onSeasonSelected, leagues, onLeagueSelected }) => {
 	return (
 		<>
 			<label className="season">Pick a League</label>
-			<select defaultValue="" onChange={handleLeagueChange}>
+			<select
+				className="league-select"
+				defaultValue=""
+				onChange={handleLeagueChange}
+			>
 				<option value="">Select a League...</option>
 				{LeagueOptions}
 			</select>

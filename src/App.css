@@ -10,8 +10,12 @@ body {
 	font-weight: bold;
 }
 
+.league-select {
+	margin-bottom: 1%;
+}
+
 .filters > select {
-	width: 10%;
+	width: max-content;
 	margin-top: 0.5%;
 }
 .season {
@@ -35,7 +39,6 @@ li::marker {
 }
 
 table {
-	/* border: 2px solid rgb(255, 255, 255); */
 	box-shadow: 10px 10px grey;
 	border: 2px solid rgb(11, 5, 95);
 	width: 40%;
